@@ -1,0 +1,18 @@
+(Assignment5)
+
+   1  mkdir assignment5
+   2  cd assignment5
+   3  vi Dockerfile
+   
+FROM ubuntu
+RUN apt-get update
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install tzdata -y
+RUN apt-get install apache2 -y
+COPY  index.html   /var/www/html/
+ENTRYPOINT apachectl -D FOREGROUND
+
+   4  echo "this is a index file and it's running on a docker container" > index.html
+   5  sudo docker build . -t docker-assignment5
+   6  sudo docker images
+   7  sudo docker run -itd -p 90:80 docker-assignment5
+   8  sudo docker ps -a
